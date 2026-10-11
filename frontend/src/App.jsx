@@ -1,9 +1,9 @@
-import { useState } from 'react'
-
+import React from 'react'
+import Signup from './pages/auth/Signup'
 function App() {
   return (
     <>
-      <h1>Vite + React</h1>
+      <Signup />
     </>
   )
 }
