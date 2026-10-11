@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signupShema } from "../../utils/authSchemas.js";
+import { supabase } from "../../lib/supabase.js";
 
 export default function Signup() {
   const {
@@ -17,14 +18,40 @@ export default function Signup() {
     },
   });
 
-  const onSubmit = async (data) => {
-    // Never send confirmPassword to the backend.
-    const { confirmPassword, ...userData } = data;
+const onSubmit = async (data) => {
+  try {
+    const { name, email, password } = data;
 
-    console.log("Signup data:", userData);
+    const { data: signupData, error } = await supabase.auth.signUp({
+      email: email.trim(),
+      password,
+      options: {
+        data: {
+          full_name: name.trim(),
+        },
+      },
+    });
 
-    // Later, send userData to your backend API.
-  };
+    if (error) {
+      alert(error.message);
+      return;
+    }
+
+    if (signupData.user) {
+      alert(
+        signupData.session
+          ? "Account created successfully!"
+          : "Registration successful. Please check your email if verification is required."
+      );
+
+      console.log("Registered user:", signupData.user);
+    }
+  } catch (error) {
+    console.error("Signup error:", error);
+    alert("Unable to register. Please try again.");
+  }
+};
+
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-slate-100 px-4">

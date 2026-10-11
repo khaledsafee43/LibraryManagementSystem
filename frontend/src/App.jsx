@@ -1,9 +1,10 @@
 import React from 'react'
-import Signup from './pages/auth/Signup'
+import Signup from './pages/auth/Signup';
+import Login from './pages/auth/Login';
 function App() {
   return (
     <>
-      <Signup />
+      <Login />
     </>
   )
 }
