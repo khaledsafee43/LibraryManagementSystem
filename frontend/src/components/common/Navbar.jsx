@@ -20,18 +20,11 @@ export default function NavBar() {
     <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white shadow-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
         {/* Logo */}
-        <NavLink
-          to="/"
-          onClick={closeMenu}
-          aria-label="Library Management System home"
-          className="shrink-0"
-        >
           <img
             src="/LibraryManagementSystemremovebg.png"
             alt="Library Management System"
-            className="h-12 w-auto object-contain"
+            className="h-12 w-auto object-contain border-2 border-teal-700 rounded-2xl"
           />
-        </NavLink>
 
         {/* Desktop Navigation */}
         <nav
